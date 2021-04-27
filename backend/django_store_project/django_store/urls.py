@@ -19,6 +19,6 @@ import store.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/games/', store.views.GameAPIView.as_view()),
-    path('api/games/<int:id>/', store.views.GameDetailAPIView.as_view()),
+    path('api/games/', store.views.GameAPIView.as_view(), name='games'),
+    path('api/games/<int:id>/', store.views.GameDetailAPIView.as_view(), name='game'),
 ]
