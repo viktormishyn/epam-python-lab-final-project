@@ -3,6 +3,7 @@ attrs==20.3.0
 autopep8==1.5.6
 coverage==5.5
 Django==3.2
+django-cors-headers==3.7.0
 djangorestframework==3.12.4
 Faker==8.1.1
 iniconfig==1.1.1
