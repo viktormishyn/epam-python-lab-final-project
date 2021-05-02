@@ -1,0 +1,37 @@
+.header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  align-items: center;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 5fr 0.5fr;
+  grid-template-areas: "logo left nav login";
+}
+
+.header_logo {
+  grid-area: logo;
+}
+
+.header_left {
+  font-size: 1.5em;
+  grid-area: left;
+}
+
+.header_nav {
+  grid-area: nav;
+}
+
+.header_nav span {
+  margin: 1em;
+}
+
+.header_login {
+  grid-area: login;
+}
+
+.header img {
+  width: 3em;
+  filter: invert(100%);
+}
