@@ -1,2 +1,0 @@
-curl -X POST http://localhost:8000/api/games/ -d name='Warcraft' -d description='The best!!!' -d price='100' -d genre='Strategy'
-curl -X POST http://localhost:8000/api/games/ -d name='Counter Strike' -d description='Not so bad =)' -d price='50' -d genre='Action'
