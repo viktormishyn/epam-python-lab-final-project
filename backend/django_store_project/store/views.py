@@ -1,6 +1,7 @@
 from store.models import Game
 from store.serializers import GameSerializer
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework import generics, mixins
 
 
@@ -13,6 +14,11 @@ class GameAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateM
 
     def post(self, request):
         return self.create(request)
+
+    # DELETE ALL GAMES !! For test purposes only. TODO: limit access to this method for admin only ASAP
+    def delete(self, request):
+        Game.objects.all().delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class GameDetailAPIView(generics.GenericAPIView, mixins.RetrieveModelMixin,
