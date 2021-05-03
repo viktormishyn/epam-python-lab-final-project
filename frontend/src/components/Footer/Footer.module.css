@@ -1,25 +1,10 @@
 .footer {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin: 1em auto 1em auto;
   align-items: center;
-  width: 90%;
+  width: 95%;
   display: grid;
   grid-template-columns: 0.5fr 12fr 2fr;
   grid-template-areas: "logo left right";
-}
-
-.footer_logo {
-  grid-area: logo;
-}
-
-.footer_left {
-  grid-area: left;
-}
-
-.footer_right {
-  grid-area: right;
 }
 
 .footer img {

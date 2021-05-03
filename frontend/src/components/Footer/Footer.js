@@ -4,13 +4,13 @@ import logo from "../../static/logo.svg";
 function Footer() {
   return (
     <footer className={s.footer}>
-      <span className={s.footer_logo}>
+      <span>
         <img src={logo} alt="logo" />
       </span>
-      <div className={s.footer_left}>
+      <div>
         <span>GameStore</span>
       </div>
-      <div className={s.footer_right}>
+      <div>
         <span>Copyrights - 2021</span>
       </div>
     </footer>

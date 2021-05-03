@@ -1,3 +1,8 @@
 .games {
   background-color: grey;
 }
+
+.games__searchbar {
+  margin: 1em 1em 1em;
+  align-items: center;
+}

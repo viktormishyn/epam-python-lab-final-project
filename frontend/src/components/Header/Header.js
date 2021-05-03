@@ -1,22 +1,34 @@
 import s from "./Header.module.css";
 import logo from "../../static/logo.svg";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <header className={s.header}>
-      <span className={s.header_logo}>
-        <img src={logo} alt="logo" />
+      {/* logo */}
+      <span>
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
       </span>
-      <div className={s.header_left}>
-        <span>GameStore</span>
+
+      {/* left subscription near logo */}
+      <div>
+        <Link to="/" className={s.header__subscription}>
+          <span>GameStore</span>
+        </Link>
       </div>
-      <div className={s.header_nav}>
+
+      {/* navbar */}
+      <div className={s.header__nav}>
         <span>Games</span>
         <span>Community</span>
         <span>About</span>
         <span>Support</span>
       </div>
-      <div className={s.header_login}>
+
+      {/* user panel */}
+      <div className={s.header__userbar}>
         <span>Sing In</span>
       </div>
     </header>
