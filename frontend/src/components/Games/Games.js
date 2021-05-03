@@ -4,10 +4,11 @@ import axios from "axios";
 
 function Games() {
   const [games, setGames] = useState([]);
+  const BASE_URL = "http://localhost:8000/";
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/games")
+      .get(BASE_URL + "api/games/")
       .then((res) => {
         setGames(res.data);
       })
@@ -18,14 +19,15 @@ function Games() {
 
   return (
     <div className={s.games}>
-      <h1>Games</h1>
       <ul>
         {games.map((game) => (
           <li key={game.id} style={{ float: "left", margin: "10px" }}>
-            <p>{game.name}</p>
-            <p>{game.genre}</p>
-            <p>{game.description}</p>
-            <p>{game.price}</p>
+            <img src={game.image} alt={game.name} width="400px" />
+            <h2>{game.name}</h2>
+            <p>Genre: {game.genre}</p>
+            <p>Description: {game.description}</p>
+            <p>${game.price}</p>
+            <hr />
           </li>
         ))}
       </ul>
