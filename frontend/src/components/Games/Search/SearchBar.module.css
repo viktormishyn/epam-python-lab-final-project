@@ -6,3 +6,27 @@
   grid-template-columns: 2fr 12fr 2fr;
   grid-template-areas: "checkbox genres searchbox";
 }
+
+.searchbar__genre {
+  background-color: #4caf50; /* Green */
+  border-radius: 20px;
+  padding: 0.2em 0.5em;
+  margin: auto 0.2em auto 0.2em;
+}
+
+.searchbar__search {
+  display: flex;
+}
+
+.searchbar__input {
+  background-color: #585858;
+  border-style: hidden;
+  height: 1.5em;
+}
+
+.searchbar input:focus {
+  outline: none;
+}
+
+.searchbar__icon {
+}

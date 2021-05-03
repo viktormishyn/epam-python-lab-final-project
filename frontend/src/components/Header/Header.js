@@ -29,7 +29,7 @@ function Header() {
 
       {/* user panel */}
       <div className={s.header__userbar}>
-        <span>Sing In</span>
+        <span>Sign in</span>
       </div>
     </header>
   );

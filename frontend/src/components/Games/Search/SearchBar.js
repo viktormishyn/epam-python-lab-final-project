@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./SearchBar.module.css";
+import SearchIcon from "@material-ui/icons/Search";
 
 function SearchBar() {
   return (
@@ -8,12 +9,16 @@ function SearchBar() {
       <span>+ add genre</span>
 
       {/* genres panel  */}
-      <span>Strategy</span>
+      <div>
+        <span className={s.searchbar__genre}>Strategy</span>
+        <span className={s.searchbar__genre}>RPG</span>
+      </div>
 
       {/* search box */}
-      <span>
-        <input type="text" />
-      </span>
+      <div className={s.searchbar__search}>
+        <input type="text" className={s.searchbar__input} />
+        <SearchIcon className={s.searchbar__icon} />
+      </div>
     </div>
   );
 }
