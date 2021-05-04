@@ -18,8 +18,10 @@
   grid-area: nav;
 }
 
-.header__nav span {
+.header__nav__link {
   margin: 1.5em;
+  color: white;
+  text-decoration: none;
 }
 
 .header__userbar {
