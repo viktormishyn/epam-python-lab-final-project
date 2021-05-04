@@ -1,16 +1,15 @@
 import s from "./Games.module.css";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import SearchBar from "./Search/SearchBar";
 import GameItem from "./GameItem/GameItem";
+import { gameAPI } from "../../api/api";
 
 function Games() {
   const [games, setGames] = useState([]);
-  const BASE_URL = "http://localhost:8000/";
 
   useEffect(() => {
-    axios
-      .get(BASE_URL + "api/games/")
+    gameAPI
+      .getGames()
       .then((res) => {
         setGames(res.data);
       })
