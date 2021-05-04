@@ -2,6 +2,7 @@ import s from "./Games.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "./Search/SearchBar";
+import GameItem from "./GameItem/GameItem";
 
 function Games() {
   const [games, setGames] = useState([]);
@@ -24,18 +25,15 @@ function Games() {
       <div className={s.games__searchbar}>
         <SearchBar />
       </div>
-      <ul>
+
+      {/* games */}
+      <div className={s.games__items}>
         {games.map((game) => (
-          <li key={game.id}>
-            <img src={game.image} alt={game.name} width="400px" />
-            <h2>{game.name}</h2>
-            <p>Genre: {game.genre}</p>
-            <p>Description: {game.description}</p>
-            <p>${game.price}</p>
-            <hr />
-          </li>
+          <div className={s.games__item}>
+            <GameItem game={game} key={game.id} />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

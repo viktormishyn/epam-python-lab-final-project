@@ -1,0 +1,20 @@
+.gameItem {
+}
+
+.gameItem__price {
+}
+
+.gameItem__genre {
+}
+
+.gameItem__name {
+}
+
+.gameItem img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.product button {
+}

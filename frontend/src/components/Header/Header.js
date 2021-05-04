@@ -21,16 +21,16 @@ function Header() {
 
       {/* navbar */}
       <div className={s.header__nav}>
-        <Link to="/" class={s.header__nav__link}>
+        <Link to="/" className={s.header__nav__link}>
           <span>Games</span>
         </Link>
-        <Link to="/community" class={s.header__nav__link}>
+        <Link to="/community" className={s.header__nav__link}>
           <span>Community</span>
         </Link>
-        <Link to="/about" class={s.header__nav__link}>
+        <Link to="/about" className={s.header__nav__link}>
           <span>About</span>
         </Link>
-        <Link to="/support" class={s.header__nav__link}>
+        <Link to="/support" className={s.header__nav__link}>
           <span>Support</span>
         </Link>
       </div>
