@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 import Community from "./components/Community";
 import About from "./components/About";
 import Support from "./components/Support";
+import Game from "./components/Game/Game";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       {/* body */}
       <div className="main">
         <Routes>
+          <Route path="/games/:id" element={<Game />} />
           <Route path="/" element={<Games />} />
           <Route path="/games" element={<Games />} />
           <Route path="/community" element={<Community />} />

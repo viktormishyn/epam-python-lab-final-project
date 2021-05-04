@@ -1,0 +1,43 @@
+.game {
+  margin: 2em 2em 2em 2em;
+}
+
+.game img {
+  max-height: 400px;
+  max-width: 400px;
+}
+
+.game__buy {
+  /* border: yellow solid 1px; */
+  display: grid;
+  grid-template-columns: 12fr 2fr;
+  grid-template-areas: price buy;
+}
+
+.game__buy__price {
+  /* border: yellow solid 1px; */
+  vertical-align: middle;
+  font-size: xx-large;
+  font-weight: 200;
+}
+
+.game__buy__button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 2px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: x-large;
+  border-radius: 3px;
+  font-weight: bolder;
+}
+
+.game__genre {
+  font-size: small;
+  background-color: #65a8c7; /* Green */
+  border-radius: 20px;
+  padding: 0.2em 0.5em;
+  margin: auto 0.2em auto 0.2em;
+}

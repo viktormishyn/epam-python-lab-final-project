@@ -9,6 +9,6 @@ export const gameAPI = {
     return instance.get(`games/`);
   },
   getGame(id) {
-    return instance.get(`games/${id}`);
+    return instance.get(`games/${id}/`);
   },
 };
