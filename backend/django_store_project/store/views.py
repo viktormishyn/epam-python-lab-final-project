@@ -3,11 +3,14 @@ from store.serializers import GameSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics, mixins
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class GameAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
     serializer_class = GameSerializer
     queryset = Game.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('genre',)
 
     def get(self, request):
         return self.list(request)
