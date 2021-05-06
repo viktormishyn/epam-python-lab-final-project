@@ -8,7 +8,7 @@ function SearchBar(props) {
     <div className={s.searchbar}>
       {/* genre checkbox */}
       <div className={s.searchbar__popover}>
-        <SearchPopover onChange={props.onChange} />
+        <SearchPopover onGenreChange={props.onGenreChange} />
       </div>
 
       {/* genres panel  */}
@@ -17,6 +17,7 @@ function SearchBar(props) {
           {props.genre ? props.genre : "All genres"}
         </span>
       </div>
+
       {/* search box */}
       <div className={s.searchbar__search}>
         <input type="text" className={s.searchbar__input} />

@@ -6,10 +6,10 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 
 export default function SearchRadiobuttonPanel(props) {
-  const [value, setValue] = React.useState(null);
+  const value = null;
 
   const handleChange = (event) => {
-    props.onChange(event.target.value);
+    props.onGenreChange(event.target.value);
   };
 
   return (

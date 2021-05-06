@@ -24,7 +24,7 @@ function Games() {
     <div className={s.games}>
       {/* search bar: genre checkbox + search box */}
       <div className={s.games__searchbar}>
-        <SearchBar onChange={(value) => setGenre(value)} genre={genre} />
+        <SearchBar onGenreChange={(value) => setGenre(value)} genre={genre} />
       </div>
 
       {/* games */}

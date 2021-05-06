@@ -45,9 +45,9 @@ export default function SearchPopover(props) {
           horizontal: "center",
         }}
       >
-        <Typography className={classes.typography}>
+        <Typography component={"span"} className={classes.typography}>
           {/* <SearchCheckboxPanel /> */}
-          <SearchRadiobuttonPanel onChange={props.onChange} />
+          <SearchRadiobuttonPanel onGenreChange={props.onGenreChange} />
         </Typography>
       </Popover>
     </div>
