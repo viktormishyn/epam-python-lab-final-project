@@ -5,12 +5,13 @@ const instance = axios.create({
 });
 
 export const gameAPI = {
-  getGames(genre = null) {
-    if (genre === null) {
-      return instance.get(`games/`);
-    } else {
-      return instance.get(`games/?genre=${genre}`);
-    }
+  getGames(genre = null, search = null) {
+    return instance.get(`games/`, {
+      params: {
+        genre: genre,
+        search: search,
+      },
+    });
   },
   getGame(id) {
     return instance.get(`games/${id}/`);

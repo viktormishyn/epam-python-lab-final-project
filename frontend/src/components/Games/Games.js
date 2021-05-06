@@ -6,25 +6,30 @@ import { gameAPI } from "../../api/api";
 
 function Games() {
   const [games, setGames] = useState([]);
-  const [genre, setGenre] = useState(null);
+  const [genre, setGenre] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     gameAPI
-      .getGames(genre)
+      .getGames(genre, search)
       .then((res) => {
         setGames(res.data);
       })
-      .then(console.log("rendering"))
       .catch((err) => {
         console.log(err);
       });
-  }, [genre]);
+  }, [genre, search]);
 
   return (
     <div className={s.games}>
       {/* search bar: genre checkbox + search box */}
       <div className={s.games__searchbar}>
-        <SearchBar onGenreChange={(value) => setGenre(value)} genre={genre} />
+        <SearchBar
+          onGenreChange={(value) => setGenre(value)}
+          genre={genre}
+          onSearch={(value) => setSearch(value)}
+          search={search}
+        />
       </div>
 
       {/* games */}
