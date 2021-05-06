@@ -3,8 +3,12 @@
   width: 95%;
   align-items: center;
   display: grid;
-  grid-template-columns: 2fr 12fr 2fr;
+  grid-template-columns: 2fr 10fr 2fr;
   grid-template-areas: "checkbox genres searchbox";
+}
+
+.searchbar__popover {
+  cursor: pointer;
 }
 
 .searchbar__genre {
