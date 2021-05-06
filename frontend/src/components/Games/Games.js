@@ -13,10 +13,11 @@ function Games() {
       .then((res) => {
         setGames(res.data);
       })
+      .then(console.log("rendering"))
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <div className={s.games}>
@@ -28,8 +29,8 @@ function Games() {
       {/* games */}
       <div className={s.games__items}>
         {games.map((game) => (
-          <div className={s.games__item}>
-            <GameItem game={game} key={game.id} />
+          <div className={s.games__item} key={game.id}>
+            <GameItem game={game} />
           </div>
         ))}
       </div>
