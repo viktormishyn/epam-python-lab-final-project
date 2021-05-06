@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchPopover() {
+export default function SearchPopover(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -47,7 +47,7 @@ export default function SearchPopover() {
       >
         <Typography className={classes.typography}>
           {/* <SearchCheckboxPanel /> */}
-          <SearchRadiobuttonPanel />
+          <SearchRadiobuttonPanel onChange={props.onChange} />
         </Typography>
       </Popover>
     </div>

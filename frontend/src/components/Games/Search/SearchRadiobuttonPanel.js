@@ -5,11 +5,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 
-export default function SearchRadiobuttonPanel() {
-  const [value, setValue] = React.useState("all");
+export default function SearchRadiobuttonPanel(props) {
+  const [value, setValue] = React.useState(null);
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    props.onChange(event.target.value);
   };
 
   return (
@@ -28,11 +28,7 @@ export default function SearchRadiobuttonPanel() {
         />
         <FormControlLabel value="RPG" control={<Radio />} label="RPG" />
         <FormControlLabel value="Action" control={<Radio />} label="Action" />
-        <FormControlLabel
-          value="All genres"
-          control={<Radio />}
-          label="All genres"
-        />
+        <FormControlLabel value="" control={<Radio />} label="All" />
       </RadioGroup>
     </FormControl>
   );
