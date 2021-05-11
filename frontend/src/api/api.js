@@ -17,3 +17,9 @@ export const gameAPI = {
     return instance.get(`games/${id}/`);
   },
 };
+
+export const genreAPI = {
+  getGenres() {
+    return instance.get(`genres/`);
+  },
+};

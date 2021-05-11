@@ -1,34 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { genreAPI } from "../../../api/api";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 
 export default function SearchRadiobuttonPanel(props) {
-  const value = null;
+  const [genres, setGenres] = useState([]);
+  const [value, setValue] = React.useState("");
+
+  useEffect(() => {
+    genreAPI
+      .getGenres()
+      .then((res) => setGenres(res.data))
+      .catch((err) => console.log(err));
+  }, [genres]);
 
   const handleChange = (event) => {
     props.onGenreChange(event.target.value);
+    setValue(event.target.value);
   };
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend"></FormLabel>
       <RadioGroup
         aria-label="genre"
         name="genre"
         value={value}
         onChange={handleChange}
       >
+        {genres.map((genre) => (
+          <FormControlLabel
+            value={genre.name}
+            control={<Radio color="default" />}
+            label={genre.name}
+            key={genre.id}
+          />
+        ))}
         <FormControlLabel
-          value="Strategy"
-          control={<Radio />}
-          label="Strategy"
+          value=""
+          control={<Radio color="default" />}
+          label="All"
         />
-        <FormControlLabel value="RPG" control={<Radio />} label="RPG" />
-        <FormControlLabel value="Action" control={<Radio />} label="Action" />
-        <FormControlLabel value="" control={<Radio />} label="All" />
       </RadioGroup>
     </FormControl>
   );
