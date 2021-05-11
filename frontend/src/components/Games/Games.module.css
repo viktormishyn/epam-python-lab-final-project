@@ -1,5 +1,5 @@
 .games__searchbar {
-  margin: 2em 2em 2em 2em;
+  margin: 1em 1em 1em 1em;
   align-items: center;
 }
 
@@ -10,11 +10,11 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin: auto;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .games__item {
   margin: 1em 1em 1em 1em;
   /* border: yellow solid 1px; */
-  width: 20%;
+  width: 28%;
 }

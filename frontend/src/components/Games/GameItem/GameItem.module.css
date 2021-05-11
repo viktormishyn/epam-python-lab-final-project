@@ -1,20 +1,31 @@
-.gameItem {
-}
-
-.gameItem__price {
-}
-
-.gameItem__genre {
-}
-
-.gameItem__name {
-}
-
 .gameItem img {
   height: 200px;
   width: 100%;
   object-fit: cover;
 }
 
-.product button {
+.gameItem__price_buy {
+  font-size: x-large;
+  margin: 0.3em 0 0.3em 0;
+}
+
+.gameItem__price {
+  float: left;
+  font-weight: 200;
+}
+
+.gameItem__buy_button {
+  font-size: x-large;
+  float: right;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.gameItem__genre_name {
+  font-size: small;
+  float: left;
 }

@@ -10,9 +10,19 @@ function GameItem({ game }) {
         <img src={game.image} alt={game.name} />
       </Link>
 
-      <h2>{game.name}</h2>
-      <p>Genre: {game.genre}</p>
-      <p>${game.price}</p>
+      {/* price and button */}
+      <div className={s.gameItem__price_buy}>
+        <span className={s.gameItem__price}>${game.price}</span>
+        <button className={s.gameItem__buy_button}>BUY</button>
+      </div>
+
+      {/* genre and name */}
+      <div className={s.gameItem__genre_name}>
+        <br />
+        {game.genre}
+        <br />
+        <strong>{game.name}</strong>
+      </div>
     </div>
   );
 }
