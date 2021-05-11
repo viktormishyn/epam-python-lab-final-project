@@ -1,0 +1,11 @@
+django-admin startproject core .
+python3 manage.py startapp blog
+python3 manage.py startapp blog_api
+
+python3 manage.py runserver
+python3 manage.py makemigrations --dry-run --verbosity 3
+# dry run - mockup run, without applying changes
+python3 createsuperuser
+
+coverage run --omit='*/env/*' manage.py test
+coverage html
