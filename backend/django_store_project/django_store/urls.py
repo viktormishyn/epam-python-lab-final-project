@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/v1/games/', store.views.GameAPIView.as_view(), name='games'),
     path('api/v1/games/<int:id>/',
          store.views.GameDetailAPIView.as_view(), name='game'),
+    path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

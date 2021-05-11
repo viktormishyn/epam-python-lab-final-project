@@ -1,10 +1,26 @@
-from store.models import Game
-from store.serializers import GameSerializer
+from store.models import Game, Genre
+from store.serializers import GameSerializer, GenreSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics, mixins
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+
+
+class GenreAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
+    serializer_class = GenreSerializer
+    queryset = Genre.objects.all()
+
+    def get(self, request):
+        return self.list(request)
+
+    def post(self, request):
+        return self.create(request)
+
+    def delete(self, request):
+        # DELETE ALL GENRES !! For test purposes only. TODO: limit access to this method for admin only
+        Genre.objects.all().delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class GameAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
