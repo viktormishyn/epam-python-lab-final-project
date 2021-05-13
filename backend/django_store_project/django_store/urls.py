@@ -18,13 +18,20 @@ from django.urls import path
 import store.views
 from django.conf import settings
 from django.conf.urls.static import static
+# jwt
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/games/', store.views.GameAPIView.as_view(), name='games'),
     path('api/v1/games/<int:id>/',
          store.views.GameDetailAPIView.as_view(), name='game'),
-    path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres')
+    path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
+    path('api/v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
