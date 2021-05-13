@@ -13,9 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from users.views import UserCreate
 from django.contrib import admin
 from django.urls import path
+from rest_framework import views
 import store.views
+import users.views
 from django.conf import settings
 from django.conf.urls.static import static
 # jwt
@@ -30,6 +33,8 @@ urlpatterns = [
     path('api/v1/games/<int:id>/',
          store.views.GameDetailAPIView.as_view(), name='game'),
     path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
+    path('api/v1/user/register/',
+         users.views.UserCreate.as_view(), name='create_user'),
     path('api/v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
