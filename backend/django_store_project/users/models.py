@@ -1,69 +1,52 @@
 from django.db import models
-from django.contrib.auth.models import (
-    AbstractBaseUser, BaseUserManager
-)
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
 
 class UserManager(BaseUserManager):
+    def create_superuser(self, email, username, password, **other_fields):
+        other_fields.setdefault('is_staff', True)
+        other_fields.setdefault('is_superuser', True)
+        other_fields.setdefault('is_active', True)
 
-    def create_user(self, email, username, password, staff=False, admin=False):
+        if other_fields.get('is_staff') is not True:
+            raise ValueError(
+                'Superuser must be assigned to is_staff=True.'
+            )
+        if other_fields.get('is_superuser') is not True:
+            raise ValueError(
+                'Superuser must be assigned to is_superuser=True.'
+            )
+        return self.create_user(email, username, password, **other_fields)
+
+    def create_user(self, email, username, password, **other_fields):
         if not email:
-            raise ValueError("Users must have an email address")
-        if not password:
-            raise ValueError("Users must have a password")
-        if not username:
-            raise ValueError("Users must have a username")
+            raise ValueError(_('You must provide an email address'))
         email = self.normalize_email(email)
-        user = self.model(email=email, username=username,
-                          staff=staff, admin=admin)
+        user = self.model(email=email, username=username, **other_fields)
         user.set_password(password)
         user.save()
         return user
 
-    def create_staffuser(self, email, username, password):
-        user = self.create_user(email, username, password, staff=True)
-        return user
 
-    def create_superuser(self, email, username, password):
-        user = self.create_user(
-            email, username, password, staff=True, admin=True)
-        return user
-
-
-class User(AbstractBaseUser):
-    email = models.EmailField(max_length=255, unique=True)
-    username = models.CharField(max_length=50, unique=True, null=True)
-    timestamp = models.DateTimeField(auto_now_add=True, null=True)
-    active = models.BooleanField(default=True)  # can login
-    staff = models.BooleanField(default=False)  # manager, non superuser
-    admin = models.BooleanField(default=False)  # superuser
-    # TODO - create email verification
-    confirmed = models.BooleanField(default=True)
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-    # email and password are required by default
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_('email_address'), unique=True)
+    username = models.CharField(max_length=50, unique=True)
+    start_date = models.DateTimeField(default=timezone.now)
+    about = models.TextField(_('about'), max_length=500, blank=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    # initially should be False TODO
 
     objects = UserManager()
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
     def __str__(self):
-        return self.email
-
-    def get_username(self):
         return self.username
-
-    @property
-    def is_staff(self):
-        return self.staff
-
-    @property
-    def is_admin(self):
-        return self.admin
-
-    @property
-    def is_active(self):
-        return self.active
-
 
 # class Profile(models.Model):
 #     user = models.OneToOneField(User)
