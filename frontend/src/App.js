@@ -9,26 +9,49 @@ import Community from "./components/Community";
 import About from "./components/About";
 import Support from "./components/Support";
 import Game from "./components/Game/Game";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#4caf50",
+    },
+    secondary: {
+      main: "#fefefe",
+    },
+    action: {
+      hover: "#000000",
+      focusOpacity: 1,
+    },
+  },
+  typography: {
+    button: {
+      textTransform: "none",
+    },
+  },
+});
 
 function App() {
   return (
     <div className="app-wraper">
-      <Header />
+      <ThemeProvider theme={theme}>
+        <Header />
 
-      {/* body */}
-      <div className="main">
-        <Routes>
-          <Route path="/games/:id" element={<Game />} />
-          <Route path="/" element={<Games />} />
-          <Route path="/games" element={<Games />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="*" element={<Whoops404 />} />
-        </Routes>
-      </div>
+        {/* body */}
+        <div className="main">
+          <Routes>
+            <Route path="/games/:id" element={<Game />} />
+            <Route path="/" element={<Games />} />
+            <Route path="/games" element={<Games />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="*" element={<Whoops404 />} />
+          </Routes>
+        </div>
 
-      <Footer />
+        <Footer />
+      </ThemeProvider>
     </div>
   );
 }
