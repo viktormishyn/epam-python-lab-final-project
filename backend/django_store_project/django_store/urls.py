@@ -34,7 +34,7 @@ urlpatterns = [
     path('api/v1/games/<int:id>/',
          store.views.GameDetailAPIView.as_view(), name='game'),
     path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
-    path('api/v1/user/register/',
+    path('api/v1/users/register/',
          users.views.UserCreate.as_view(), name='create_user'),
     path('api/v1/auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
