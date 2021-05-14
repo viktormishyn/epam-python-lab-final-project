@@ -1,8 +1,21 @@
+import { useState } from "react";
 import s from "./Header.module.css";
 import logo from "../../static/logo.svg";
 import { Link } from "react-router-dom";
+import Login from "./Login";
+// Material-UI
+import { Dialog, Button } from "@material-ui/core";
 
 function Header() {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <header className={s.header}>
       {/* logo */}
@@ -37,7 +50,12 @@ function Header() {
 
       {/* user panel */}
       <div className={s.header__userbar}>
-        <span>Sign in</span>
+        <Button onClick={handleOpen} color="secondary" size="medium">
+          Sign in
+        </Button>
+        <Dialog open={open} onClose={handleClose}>
+          <Login open={open} handleClose={handleClose} />
+        </Dialog>
       </div>
     </header>
   );
