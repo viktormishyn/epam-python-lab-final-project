@@ -1,6 +1,6 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
 from store.models import Game, Genre
+from django.contrib.auth import get_user_model
 
 
 class Test_Create_Game(TestCase):
@@ -8,8 +8,8 @@ class Test_Create_Game(TestCase):
     @classmethod
     def setUpTestData(cls):
         test_genre = Genre.objects.create(name="Genre")
-        testuser1 = User.objects.create_user(
-            username='testuser1', password='12345678')
+        testuser1 = get_user_model().objects.create_user(
+            email='testuser1@gmail.com', password='12345678', username='testuser1')
         test_game = Game.objects.create(
             name="Game", description="description", price="100", genre=test_genre)
 

@@ -23,6 +23,10 @@ class UserManager(BaseUserManager):
     def create_user(self, email, username, password, **other_fields):
         if not email:
             raise ValueError(_('You must provide an email address'))
+        if not username:
+            raise ValueError(_('You must provide a username'))
+        if not password:
+            raise ValueError(_('You must provide a password'))
         email = self.normalize_email(email)
         user = self.model(email=email, username=username, **other_fields)
         user.set_password(password)
@@ -34,7 +38,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email_address'), unique=True)
     username = models.CharField(max_length=50, unique=True)
     start_date = models.DateTimeField(default=timezone.now)
-    about = models.TextField(_('about'), max_length=500, blank=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
