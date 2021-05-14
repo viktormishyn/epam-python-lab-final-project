@@ -2,12 +2,12 @@ from store.models import Game, Genre
 from store.serializers import GameSerializer, GenreSerializer
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import generics, mixins
+from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 
 
-class GenreAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
+class GenreAPIView(generics.ListCreateAPIView):
     serializer_class = GenreSerializer
     queryset = Genre.objects.all()
 
@@ -23,7 +23,7 @@ class GenreAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.Create
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class GameAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
+class GameAPIView(generics.ListCreateAPIView):
     serializer_class = GameSerializer
     queryset = Game.objects.all()
     filter_backends = (DjangoFilterBackend, SearchFilter)
@@ -42,8 +42,7 @@ class GameAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateM
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class GameDetailAPIView(generics.GenericAPIView, mixins.RetrieveModelMixin,
-                        mixins.UpdateModelMixin, mixins.DestroyModelMixin):
+class GameDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GameSerializer
     queryset = Game.objects.all()
     lookup_field = 'id'
@@ -56,3 +55,25 @@ class GameDetailAPIView(generics.GenericAPIView, mixins.RetrieveModelMixin,
 
     def delete(self, request, id):
         return self.destroy(request)
+
+
+""" Concrete View Classes
+#CreateAPIView
+Used for create-only endpoints.
+#ListAPIView
+Used for read-only endpoints to represent a collection of model instances.
+#RetrieveAPIView
+Used for read-only endpoints to represent a single model instance.
+#DestroyAPIView
+Used for delete-only endpoints for a single model instance.
+#UpdateAPIView
+Used for update-only endpoints for a single model instance.
+##ListCreateAPIView
+Used for read-write endpoints to represent a collection of model instances.
+RetrieveUpdateAPIView
+Used for read or update endpoints to represent a single model instance.
+#RetrieveDestroyAPIView
+Used for read or delete endpoints to represent a single model instance.
+#RetrieveUpdateDestroyAPIView
+Used for read-write-delete endpoints to represent a single model instance.
+"""
