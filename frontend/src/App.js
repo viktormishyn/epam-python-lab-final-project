@@ -9,6 +9,7 @@ import Community from "./components/Community";
 import About from "./components/About";
 import Support from "./components/Support";
 import Game from "./components/Game/Game";
+import Register from "./components/Header/Register";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 const theme = createMuiTheme({
@@ -40,6 +41,7 @@ function App() {
         {/* body */}
         <div className="main">
           <Routes>
+            <Route path="/register" element={<Register />} />
             <Route path="/games/:id" element={<Game />} />
             <Route path="/" element={<Games />} />
             <Route path="/games" element={<Games />} />
