@@ -52,6 +52,11 @@ export const loginAPI = {
       password: password,
     });
   },
+  logout() {
+    return axiosInstance.post(`logout/blacklist/`, {
+      refresh_token: localStorage.getItem("refresh_token"),
+    });
+  },
 };
 
 // instance's interceptors

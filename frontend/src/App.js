@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Whoops404 } from "./components/Whoops404";
@@ -12,6 +12,7 @@ import Game from "./components/Game/Game";
 import Register from "./components/Header/Register";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Login from "./components/Header/Login";
+import Logout from "./components/Header/Logout";
 import { useNavigate } from "react-router-dom";
 
 const theme = createMuiTheme({
@@ -64,6 +65,7 @@ function App() {
                 />
               }
             />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </div>
 

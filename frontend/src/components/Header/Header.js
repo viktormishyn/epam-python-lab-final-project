@@ -1,7 +1,7 @@
 import { useState } from "react";
 import s from "./Header.module.css";
 import logo from "../../static/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Login from "./Login";
 // Material-UI
 import { Dialog, Button } from "@material-ui/core";
@@ -48,14 +48,20 @@ function Header() {
         </Link>
       </div>
 
-      {/* user panel */}
+      {/* User panel */}
       <div className={s.header__userbar}>
+        {/* Login button*/}
         <Button onClick={handleOpen} color="secondary" size="medium">
           Sign in
         </Button>
         <Dialog open={open} onClose={handleClose}>
           <Login open={open} handleClose={handleClose} />
         </Dialog>
+
+        {/* Logout button*/}
+        <Button color="secondary" component={NavLink} to="/logout">
+          Logout
+        </Button>
       </div>
     </header>
   );
