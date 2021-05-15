@@ -1,4 +1,5 @@
-import React from "react";
+import { useState } from "react";
+import { instance, loginAPI } from "../../api/api";
 // Material-UI
 import {
   makeStyles,
@@ -47,7 +48,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({ open, handleClose }) => {
+export default function Login({ open, handleClose }) {
+  const initialFormData = Object.freeze({
+    email: "",
+    password: "",
+  });
+  const [formData, updateFormData] = useState(initialFormData);
+
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      // Trimming any whitespace
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(formData);
+
+    loginAPI.login(formData.email, formData.password).then((res) => {
+      localStorage.setItem("access_token", res.data.access);
+      localStorage.setItem("refresh_token", res.data.refresh);
+      instance.defaults.headers["Authorization"] =
+        "JWT " + localStorage.getItem("access_token");
+      handleClose();
+      // console.log(res);
+      // console.log(res.data);
+    });
+  };
+
   const classes = useStyles();
 
   return (
@@ -61,14 +91,20 @@ const Login = ({ open, handleClose }) => {
         <TextField
           label="Email"
           type="email"
+          name="email"
+          id="email"
           className={classes.field}
           variant="outlined"
+          onChange={handleChange}
         />
         <TextField
           label="Password"
           type="password"
+          name="password"
+          id="password"
           className={classes.field}
           variant="outlined"
+          onChange={handleChange}
         />
         <Grid container justify="flex-start">
           <FormControlLabel
@@ -83,6 +119,7 @@ const Login = ({ open, handleClose }) => {
           variant="contained"
           className={classes.submit}
           color="primary"
+          onClick={handleSubmit}
         >
           Sign in
         </Button>
@@ -99,6 +136,4 @@ const Login = ({ open, handleClose }) => {
       </form>
     </Dialog>
   );
-};
-
-export default Login;
+}

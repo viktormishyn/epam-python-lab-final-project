@@ -42,3 +42,12 @@ export const registerAPI = {
     });
   },
 };
+
+export const loginAPI = {
+  login(email, password) {
+    return instance.post(`token/`, {
+      email: email,
+      password: password,
+    });
+  },
+};
