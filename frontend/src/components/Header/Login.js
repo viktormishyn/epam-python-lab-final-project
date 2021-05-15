@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { instance, loginAPI } from "../../api/api";
+import { loginAPI } from "../../api/api";
+import axiosInstance from "../../api/api";
 // Material-UI
 import {
   makeStyles,
@@ -70,7 +71,7 @@ export default function Login({ open, handleClose }) {
     loginAPI.login(formData.email, formData.password).then((res) => {
       localStorage.setItem("access_token", res.data.access);
       localStorage.setItem("refresh_token", res.data.refresh);
-      instance.defaults.headers["Authorization"] =
+      axiosInstance.defaults.headers["Authorization"] =
         "JWT " + localStorage.getItem("access_token");
       handleClose();
       // console.log(res);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Whoops404 } from "./components/Whoops404";
@@ -11,6 +11,8 @@ import Support from "./components/Support";
 import Game from "./components/Game/Game";
 import Register from "./components/Header/Register";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import Login from "./components/Header/Login";
+import { useNavigate } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -33,6 +35,8 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  const navigate = useNavigate();
+
   return (
     <div className="app-wraper">
       <ThemeProvider theme={theme}>
@@ -49,6 +53,17 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/support" element={<Support />} />
             <Route path="*" element={<Whoops404 />} />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  open={true}
+                  handleClose={() => {
+                    navigate("/");
+                  }}
+                />
+              }
+            />
           </Routes>
         </div>
 
