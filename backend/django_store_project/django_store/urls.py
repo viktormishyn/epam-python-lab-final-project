@@ -28,18 +28,21 @@ from rest_framework_simplejwt.views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/games/', store.views.GameAPIView.as_view(), name='games'),
-    path('api/v1/games/<int:id>/',
-         store.views.GameDetailAPIView.as_view(), name='game'),
-    path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
-    path('api/v1/users/register/',
-         users.views.UserCreate.as_view(), name='create_user'),
-    path('api/v1/auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # authorization, authentication
     path('api/v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/logout/blacklist/',
          users.views.BlacklistTokenView.as_view(), name='blacklist'),
+    path('admin/', admin.site.urls),
+    path('api/v1/auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/v1/users/register/',
+         users.views.UserCreate.as_view(), name='create_user'),
+
+    # content
+    path('api/v1/games/', store.views.GameAPIView.as_view(), name='games'),
+    path('api/v1/games/<int:id>/',
+         store.views.GameDetailAPIView.as_view(), name='game'),
+    path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
