@@ -26,6 +26,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     # authorization, authentication
@@ -43,6 +44,9 @@ urlpatterns = [
     path('api/v1/games/<int:id>/',
          store.views.GameDetailAPIView.as_view(), name='game'),
     path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
+
+    # documentation
+    path('docs/', include_docs_urls(title='GameStore')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
