@@ -27,6 +27,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from rest_framework.documentation import include_docs_urls
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
     # authorization, authentication
@@ -46,7 +47,12 @@ urlpatterns = [
     path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
 
     # documentation
-    path('docs/', include_docs_urls(title='GameStore')),
+    path('docs/', include_docs_urls(title='GameStore')),\
+    path('schema/', get_schema_view(
+        title="GameStore",
+        description="API for the GameStore",
+        version="1.0.0"
+    ), name='openapi-schema'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
