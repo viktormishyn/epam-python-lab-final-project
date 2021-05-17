@@ -1,12 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+User = get_user_model()
+
 
 class UserAccountTests(TestCase):
 
     def test_new_superuser(self):
-        db = get_user_model()
-        super_user = db.objects.create_superuser(
+        super_user = User.objects.create_superuser(
             'testuser@super.com', 'username', 'password')
         self.assertEqual(super_user.email, 'testuser@super.com')
         self.assertEqual(super_user.username, 'username')
@@ -16,24 +17,23 @@ class UserAccountTests(TestCase):
         self.assertEqual(str(super_user), 'username')
 
         with self.assertRaises(ValueError):
-            db.objects.create_superuser(
+            User.objects.create_superuser(
                 email='testuser@super.com', username='username', password='password', is_superuser=False)
         with self.assertRaises(ValueError):
-            db.objects.create_superuser(
+            User.objects.create_superuser(
                 email='testuser@super.com', username='username', password='password', is_staff=False)
         with self.assertRaises(ValueError):
-            db.objects.create_superuser(
+            User.objects.create_superuser(
                 email='', username='username', password='password')
         with self.assertRaises(ValueError):
-            db.objects.create_superuser(
+            User.objects.create_superuser(
                 email='testuser@super.com', username='', password='password')
         with self.assertRaises(ValueError):
-            db.objects.create_superuser(
+            User.objects.create_superuser(
                 email='testuser@super.com', username='username', password='')
 
     def test_new_user(self):
-        db = get_user_model()
-        user = db.objects.create_user(
+        user = User.objects.create_user(
             'testuser@user.com', 'username', 'password')
         self.assertEqual(user.email, 'testuser@user.com')
         self.assertEqual(user.username, 'username')
@@ -42,11 +42,11 @@ class UserAccountTests(TestCase):
         # self.assertFalse(user.is_active) # TODO
         self.assertEqual(str(user), 'username')
         with self.assertRaises(ValueError):
-            db.objects.create_user(
+            User.objects.create_user(
                 email='', username='username', password='password')
         with self.assertRaises(ValueError):
-            db.objects.create_user(
+            User.objects.create_user(
                 email='testuser@user.com', username='', password='password')
         with self.assertRaises(ValueError):
-            db.objects.create_user(
+            User.objects.create_user(
                 email='testuser@user.com', username='username', password='')
