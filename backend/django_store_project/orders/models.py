@@ -1,3 +1,17 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+from store.models import Game
 
-# Create your models here.
+User = get_user_model()
+
+
+class Cart(models.Model):
+    cart_id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    games = models.ManyToManyField(Game)
+
+    class Meta:
+        ordering = ['cart_id', '-created_at']
+
+    def __str__(self):
+        return f'{self.cart_id}'

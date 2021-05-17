@@ -3,6 +3,13 @@ from rest_framework import serializers
 from users.models import User
 
 
+class CartUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+
 class RegisterUserSerializer(serializers.ModelSerializer):
 
     class Meta:

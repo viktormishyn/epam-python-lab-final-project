@@ -26,6 +26,7 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,
 
 import store.views
 import users.views
+import orders.views
 
 urlpatterns = [
     # authorization, authentication
@@ -43,6 +44,10 @@ urlpatterns = [
     path('api/v1/games/<int:id>/',
          store.views.GameDetailAPIView.as_view(), name='game'),
     path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
+
+    # orders
+    path('api/v1/carts/', orders.views.ListCart.as_view(), name='carts'),
+    path('api/v1/carts/<int:pk>', orders.views.DetailCart.as_view(), name='cart'),
 
     # documentation
     path('docs/', include_docs_urls(title='GameStore')),\
