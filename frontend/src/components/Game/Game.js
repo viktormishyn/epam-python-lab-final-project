@@ -16,7 +16,7 @@ function Game() {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <div className={s.game}>

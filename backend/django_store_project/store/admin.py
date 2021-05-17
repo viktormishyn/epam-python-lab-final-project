@@ -4,7 +4,7 @@ from store.models import Game, Genre
 
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description', 'price', 'genre']
+    list_display = ['name', 'description', 'price', 'genre', 'added']
 
 
 @admin.register(Genre)

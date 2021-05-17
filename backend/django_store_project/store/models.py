@@ -2,12 +2,16 @@ from django.db import models
 from PIL import Image
 from django.core.files import File
 from io import BytesIO
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Genre(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     class Meta:
+        verbose_name_plural = 'genres'
         ordering = ('name',)
 
     def __str__(self):
@@ -16,18 +20,22 @@ class Genre(models.Model):
 
 class Game(models.Model):
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, db_index=True)
+    # slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    # genre = models.CharField(max_length=20, choices=GENRES, null=True)
     genre = models.ForeignKey(
         Genre, to_field='name', on_delete=models.PROTECT, null=True)
     image = models.ImageField(upload_to="images/", null=True)
     thumbnail = models.ImageField(upload_to="images/thumbnails/", null=True)
-    date_added = models.DateTimeField(auto_now_add=True, null=True)
+    added = models.DateTimeField(auto_now_add=True, null=True)
+    # added_by = models.ForeignKey(User, on_delete=models.PROTECT)
+    # updated = models.DateTimeField(auto_now=True, null=True)
+    # updated_by = models.ForeignKey(User, on_delete=models.PROTECT)
 
     class Meta:
-        ordering = ('date_added',)
+        verbose_name_plural = 'games'
+        ordering = ('added',)
 
     def get_image(self):
         if self.image:
