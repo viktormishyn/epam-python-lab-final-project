@@ -29,6 +29,7 @@ class Game(models.Model):
     genre = models.ForeignKey(
         Genre, to_field='name', on_delete=models.PROTECT, null=True)
     image = models.ImageField(upload_to="images/", null=True)
+    # image = models.ImageField(upload_to="images/", default='images/default.jpg')
     thumbnail = models.ImageField(upload_to="images/thumbnails/", null=True)
     added = models.DateTimeField(auto_now_add=True, null=True)
     # added_by = models.ForeignKey(User, on_delete=models.PROTECT)
