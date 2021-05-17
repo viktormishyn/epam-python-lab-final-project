@@ -1,9 +1,10 @@
+from io import BytesIO
+
+from autoslug import AutoSlugField
+from django.contrib.auth import get_user_model
+from django.core.files import File
 from django.db import models
 from PIL import Image
-from django.core.files import File
-from io import BytesIO
-from django.contrib.auth import get_user_model
-from autoslug import AutoSlugField
 
 User = get_user_model()
 

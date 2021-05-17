@@ -1,6 +1,7 @@
-from django.test import TestCase
-from store.models import Game, Genre
 from django.contrib.auth import get_user_model
+from django.test import TestCase
+
+from store.models import Game, Genre
 
 
 class Test_Create_Game(TestCase):

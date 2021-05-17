@@ -1,10 +1,11 @@
+from django.contrib.auth import get_user_model
+from django.db.models import ProtectedError
 from django.urls import reverse
+from django_seed import Seed
 from rest_framework import status
 from rest_framework.test import APITestCase
+
 from store.models import Game, Genre
-from django.contrib.auth import get_user_model
-from django_seed import Seed
-from django.db.models import ProtectedError
 
 seeder = Seed.seeder()
 seeder.add_entity(Genre, 5)
