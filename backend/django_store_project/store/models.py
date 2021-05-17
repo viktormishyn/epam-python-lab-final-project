@@ -3,6 +3,7 @@ from PIL import Image
 from django.core.files import File
 from io import BytesIO
 from django.contrib.auth import get_user_model
+from autoslug import AutoSlugField
 
 User = get_user_model()
 
@@ -20,8 +21,8 @@ class Genre(models.Model):
 
 class Game(models.Model):
 
-    name = models.CharField(max_length=100, db_index=True)
-    # slug = models.SlugField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, db_index=True, unique=True)
+    slug = AutoSlugField(populate_from='name')
     description = models.TextField()
     price = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     genre = models.ForeignKey(
