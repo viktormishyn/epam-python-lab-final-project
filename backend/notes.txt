@@ -9,6 +9,7 @@ python3 createsuperuser
 
 coverage run --omit='*/env/*' manage.py test
 coverage html
+coverage report
 
 python3 manage.py dumpdata --format json --indent 4
 python3 manage.py dumpdata store --format json --indent 4

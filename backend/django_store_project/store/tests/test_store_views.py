@@ -1,4 +1,3 @@
-from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -11,22 +10,23 @@ seeder = Seed.seeder()
 seeder.add_entity(Genre, 5)
 seeder.add_entity(Game, 5)
 
+User = get_user_model()
+
 
 class GamesTests(APITestCase):
 
     def setUp(self):
-        db = get_user_model()
         # create regular user
-        self.user = db.objects.create_user(
+        self.user = User.objects.create_user(
             'user@user.com', 'username', 'password')
         self.user.save()
         # create manager
-        self.manager = db.objects.create_user(
+        self.manager = User.objects.create_user(
             'manager@manager.com', 'manager', 'password')
         self.manager.is_staff = True
         self.manager.save()
         # create admin
-        self.admin = db.objects.create_superuser(
+        self.admin = User.objects.create_superuser(
             'admin@admin.com', 'admin', 'password')
         self.admin.save()
 
@@ -60,6 +60,8 @@ class GamesTests(APITestCase):
         response = self.client.post(url, data=data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.client.logout()
+        data = {'name': 'Game2', 'description': 'description',
+                'price': '100', 'genre': 'Genre'}
         self.client.login(email='admin@admin.com', password='password')
         response = self.client.post(url, data=data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -104,18 +106,17 @@ class GamesTests(APITestCase):
 class GameTests(APITestCase):
 
     def setUp(self):
-        db = get_user_model()
         # create regular user
-        self.user = db.objects.create_user(
+        self.user = User.objects.create_user(
             'user@user.com', 'username', 'password')
         self.user.save()
         # create manager
-        self.manager = db.objects.create_user(
+        self.manager = User.objects.create_user(
             'manager@manager.com', 'manager', 'password')
         self.manager.is_staff = True
         self.manager.save()
         # create admin
-        self.admin = db.objects.create_superuser(
+        self.admin = User.objects.create_superuser(
             'admin@admin.com', 'admin', 'password')
         self.admin.save()
 
@@ -198,8 +199,7 @@ class GameTests(APITestCase):
 class GenresTests(APITestCase):
 
     def setUp(self):
-        db = get_user_model()
-        self.admin = db.objects.create_superuser(
+        self.admin = User.objects.create_superuser(
             'admin@admin.com', 'username', 'password')
         self.admin.save()
         self.client.login(email='admin@admin.com', password='password')
