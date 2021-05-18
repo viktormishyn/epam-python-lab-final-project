@@ -245,3 +245,13 @@ class GenresTests(APITestCase):
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 0)
+
+    def test_is_admin_or_read_only_permission(self):
+        data = {'name': 'Genre'}
+        url = reverse('genres')
+        self.user = User.objects.create_user(email='user@user.com', username='user', password='password')
+        self.client.login(email='user@user.com', password='password')
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = self.client.post(url, data=data, forman='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
