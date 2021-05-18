@@ -4,9 +4,13 @@
   object-fit: cover;
 }
 
+.gameItem__description {
+  display: grid;
+}
+
 .gameItem__price_buy {
   font-size: x-large;
-  margin: 0.3em 0 0.3em 0;
+  margin: 0.1em 0 0.1em 0;
 }
 
 .gameItem__price {
@@ -26,6 +30,5 @@
 }
 
 .gameItem__genre_name {
-  font-size: small;
   float: left;
 }

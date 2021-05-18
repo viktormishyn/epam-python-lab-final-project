@@ -1,9 +1,14 @@
 from django.contrib import admin
 
-from orders.models import Cart
+from orders.models import Order, OrderItem
 
 
-@admin.register(Cart)
+@admin.register(Order)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ['cart_id', 'created_at']
+    list_display = ['user', 'created_at']
     list_filter = ['created_at']
+
+
+@admin.register(OrderItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ['game', 'qty']

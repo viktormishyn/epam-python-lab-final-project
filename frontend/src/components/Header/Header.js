@@ -51,17 +51,21 @@ function Header() {
       {/* User panel */}
       <div className={s.header__userbar}>
         {/* Login button*/}
-        <Button onClick={handleOpen} color="secondary" size="medium">
-          Sign in
-        </Button>
-        <Dialog open={open} onClose={handleClose}>
-          <Login open={open} handleClose={handleClose} />
-        </Dialog>
+        <span>
+          <Button onClick={handleOpen} color="secondary" size="medium">
+            Sign in
+          </Button>
+          <Dialog open={open} onClose={handleClose}>
+            <Login open={open} handleClose={handleClose} />
+          </Dialog>
+        </span>
 
         {/* Logout button*/}
-        <Button color="secondary" component={NavLink} to="/logout">
-          Logout
-        </Button>
+        <span>
+          <Button color="secondary" component={NavLink} to="/logout">
+            Logout
+          </Button>
+        </span>
       </div>
     </header>
   );

@@ -1,15 +1,24 @@
 from rest_framework import serializers
 
-from .models import Cart
+from .models import Order, OrderItem
 from store.serializers import GameSerializer
-from users.serializers import CartUserSerializer
+from users.serializers import OrderUserSerializer
 
 
-class CartSerializer(serializers.ModelSerializer):
+class OrderItemSerializer(serializers.ModelSerializer):
 
-    cart_id = CartUserSerializer(read_only=True, many=False)
-    games = GameSerializer(read_only=True, many=True)
+    game = GameSerializer(read_only=True, many=False)
 
     class Meta:
-        model = Cart
-        fields = ('cart_id', 'created_at', 'games')
+        model = OrderItem
+        fields = ('game', 'qty')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+
+    Order_id = OrderUserSerializer(read_only=True, many=False)
+    items = OrderItemSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Order
+        fields = ('Order_id', 'created_at', 'items')

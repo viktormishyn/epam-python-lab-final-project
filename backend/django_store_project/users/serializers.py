@@ -3,7 +3,7 @@ from rest_framework import serializers
 from users.models import User
 
 
-class CartUserSerializer(serializers.ModelSerializer):
+class OrderUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
