@@ -10,6 +10,12 @@ class GameSerializer(serializers.ModelSerializer):
                   'image', 'get_thumbnail')
 
 
+class GameOrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = ('id', 'name', 'genre', 'price', 'get_thumbnail')
+
+
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre

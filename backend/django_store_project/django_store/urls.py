@@ -46,8 +46,8 @@ urlpatterns = [
     path('api/v1/genres/', store.views.GenreAPIView.as_view(), name='genres'),
 
     # orders
-    path('api/v1/orders/', orders.views.ListOrder.as_view(), name='orders'),
-    path('api/v1/orders/<int:pk>', orders.views.DetailOrder.as_view(), name='order'),
+    path('api/v1/orders/', orders.views.OrderView.as_view(), name='orders'),
+    # path('api/v1/orders/<int:pk>', orders.views.DetailOrder.as_view(), name='order'),
 
     # documentation
     path('docs/', include_docs_urls(title='GameStore')),\
