@@ -44,16 +44,27 @@ class OrderView(APIView):
         order, _ = Order.objects.get_or_create(user=user, ordered=False)
         game = Game.objects.get(id=data.get('id'))
         qty = data.get('qty')
+        if OrderItem.objects.filter(order=order, game=game).exists():
+            return Response({'msg': 'Item already exists'}, status=status.HTTP_409_CONFLICT)
         order_item = OrderItem(game=game, qty=qty, order=order)
         order_item.save()
-        return Response({'success': 'item is added to order'}, status=status.HTTP_200_OK)
+        return Response({'success': 'Item is added to the order'}, status=status.HTTP_200_OK)
 
-    def update(self, request):
-        pass
+    def put(self, request):
+        data = request.data
+        order = Order.objects.filter(user=request.user, ordered=False).first()
+        order_item = OrderItem.objects.filter(order=order, game=data.get('id')).first()
+        qty = data.get('qty')
+        order_item.qty = qty
+        order_item.save()
+        return Response({'success': 'Item is updated'}, status=status.HTTP_200_OK)
 
     def delete(self, request):
-        pass
-
+        data = request.data
+        order = Order.objects.filter(user=request.user, ordered=False).first()
+        order_item = OrderItem.objects.filter(order=order, game=data.get('id'))
+        order_item.delete()
+        return Response({'success': 'Item is deleted from the order'}, status=status.HTTP_204_NO_CONTENT)
 
 # @receiver(pre_save, sender=OrderItem)
 # def correct_price(sender, **kwargs):

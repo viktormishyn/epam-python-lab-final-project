@@ -50,7 +50,7 @@ class GamesTests(APITestCase):
         url = reverse('games')
         # anonymous users are not allowed to create games
         response = self.client.post(url, data=data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         # regular users are not allowed to create games
         self.client.login(email='user@user.com', password='password')
         response = self.client.post(url, data=data, format='json')
@@ -81,7 +81,7 @@ class GamesTests(APITestCase):
         # only superuser is allowed to use DELETE method
         # anonymous user
         response = self.client.delete(url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         # regular user
         self.client.login(email='user@user.com', password='password')
         response = self.client.delete(url)
@@ -150,7 +150,7 @@ class GameTests(APITestCase):
         # Only staff is allowed to update games
         # anonymous
         response = self.client.put(url, data=data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         # regular user
         self.client.login(email='user@user.com', password='password')
         response = self.client.put(url, data=data, format='json')
@@ -180,7 +180,7 @@ class GameTests(APITestCase):
         # Only staff is allowed to delete games
         # anonymous
         response = self.client.delete(url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         # regular user
         self.client.login(email='user@user.com', password='password')
         response = self.client.delete(url)
