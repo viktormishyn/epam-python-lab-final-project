@@ -1,6 +1,5 @@
-django-admin startproject core .
-python3 manage.py startapp blog
-python3 manage.py startapp blog_api
+django-admin startproject <projectname> .
+python3 manage.py startapp <appname>
 
 python3 manage.py runserver
 python3 manage.py makemigrations --dry-run --verbosity 3
