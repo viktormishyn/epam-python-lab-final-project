@@ -15,7 +15,7 @@ class Post(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f'{self.game}-{self.author}-{self.created_at}'
+        return f'Post {self.id}'
 
 
 class PostReply(models.Model):
@@ -25,7 +25,7 @@ class PostReply(models.Model):
     content = models.TextField(max_length=1000)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['created_at']
 
     def __str__(self):
-        return f'{self.author}-{self.created_at}'
+        return f'PostReply {self.id}'
