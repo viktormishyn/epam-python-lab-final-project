@@ -2,8 +2,13 @@ from rest_framework import serializers
 
 from .models import Game, Genre
 
+from posts.serializers import PostSerializer
+
 
 class GameSerializer(serializers.ModelSerializer):
+
+    get_posts = PostSerializer(many=True, required=False)
+
     class Meta:
         model = Game
         fields = ('id', 'name', 'slug', 'genre', 'description', 'price',
