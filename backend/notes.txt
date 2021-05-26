@@ -16,3 +16,6 @@ python3 manage.py dumpdata store.Genre --format json --indent 4
 
 python3 manage.py dumpdata store --format json --indent 4 > store/fixtures/store.json
 python3 manage.py loaddata store/fixtures/store.json
+
+python3 manage.py dumpdata --format json --indent 4 > ../fixtures/fixture.json
+python3 manage.py loaddata ../fixtures/fixture.json
