@@ -6,6 +6,8 @@ from django.core.files import File
 from django.db import models
 from PIL import Image
 
+from django.apps import apps
+
 User = get_user_model()
 
 
@@ -70,3 +72,7 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_posts(self):
+        Post = apps.get_model('posts', 'Post')
+        return Post.objects.all().filter(game=self)

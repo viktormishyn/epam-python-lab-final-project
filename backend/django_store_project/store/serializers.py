@@ -7,7 +7,7 @@ class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         fields = ('id', 'name', 'slug', 'genre', 'description', 'price',
-                  'image', 'get_thumbnail')
+                  'image', 'get_thumbnail', 'get_posts')
 
 
 class GameOrderSerializer(serializers.ModelSerializer):

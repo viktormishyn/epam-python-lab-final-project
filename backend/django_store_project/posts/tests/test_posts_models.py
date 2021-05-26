@@ -46,3 +46,6 @@ class Test_Create_Post(TestCase):
         self.assertEqual(str(self.post), 'Post 1')
         self.assertEqual(str(self.reply1), 'PostReply 1')
         self.assertEqual(str(self.reply2), 'PostReply 2')
+
+    def test_get_replies(self):
+        self.assertEqual(len(self.post.get_replies()), 2)

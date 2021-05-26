@@ -17,6 +17,9 @@ class Post(models.Model):
     def __str__(self):
         return f'Post {self.id}'
 
+    def get_replies(self):
+        return PostReply.objects.all().filter(post=self)
+
 
 class PostReply(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
