@@ -12,15 +12,15 @@ class PostReplySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PostReply
-        fields = ('author', 'created_at', 'content')
+        fields = ('author', 'created_at', 'content', 'edited')
 
 
 class PostSerializer(serializers.ModelSerializer):
 
     # game = GamePostSerializer(read_only=True, many=False)
     author = UserPostSerializer(read_only=True, many=False)
-    get_replies = PostReplySerializer(many=True)
+    get_replies = PostReplySerializer(many=True, required=False)
 
     class Meta:
         model = Post
-        fields = ('author', 'created_at', 'content', 'get_replies')
+        fields = ('author', 'created_at', 'content', 'edited', 'get_replies')

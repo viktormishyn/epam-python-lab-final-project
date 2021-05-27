@@ -10,6 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField(max_length=2000)
+    edited = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
@@ -26,6 +27,7 @@ class PostReply(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField(max_length=1000)
+    edited = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['created_at']
