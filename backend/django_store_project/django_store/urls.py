@@ -23,10 +23,16 @@ from rest_framework.schemas import get_schema_view
 # jwt
 from rest_framework_simplejwt.views import (TokenObtainPairView,
                                             TokenRefreshView)
+from rest_framework.routers import DefaultRouter
+
 
 import store.views
 import users.views
 import orders.views
+import posts.views
+
+router = DefaultRouter()
+router.register(r'posts', posts.views.PostViewSet)
 
 urlpatterns = [
     # authorization, authentication
@@ -48,6 +54,9 @@ urlpatterns = [
     # orders
     path('api/v1/orders/', orders.views.OrderView.as_view(), name='orders'),
     # path('api/v1/orders/<int:pk>', orders.views.DetailOrder.as_view(), name='order'),
+
+    # posts
+    path('api/v1/', include(router.urls)),
 
     # documentation
     path('docs/', include_docs_urls(title='GameStore')),\

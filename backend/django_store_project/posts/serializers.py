@@ -12,7 +12,7 @@ class PostReplySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PostReply
-        fields = ('author', 'created_at', 'content', 'edited')
+        fields = ('id', 'author', 'created_at', 'content', 'edited')
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -23,4 +23,4 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ('author', 'created_at', 'content', 'edited', 'get_replies')
+        fields = ('id', 'author', 'created_at', 'content', 'edited', 'get_replies')
