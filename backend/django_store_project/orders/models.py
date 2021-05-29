@@ -32,7 +32,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    qty = models.IntegerField(default=1)
+    qty = models.PositiveIntegerField(default=1)
     ordered = models.BooleanField(default=False)
 
     def __str__(self):

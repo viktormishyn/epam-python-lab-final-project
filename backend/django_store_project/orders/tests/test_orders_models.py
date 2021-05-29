@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
+from django.db.utils import IntegrityError
+
 from orders.models import OrderItem, Order
 from store.models import Game, Genre
 
@@ -38,6 +40,11 @@ class Test_Create_Order(TestCase):
         self.assertEqual(self.item2.get_total_item_price(), 600)
         # test get_user method
         self.assertEqual(self.item1.get_user(), self.user)
+
+    def test_create_order_item_with_negative_quantity(self):
+        # game item quantity should not be less than 0
+        with self.assertRaises(IntegrityError):
+            self.item_negative = OrderItem.objects.create(game=self.game2, order=self.order, qty=-3)
 
     def test_create_order(self):
         self.assertEqual(self.order.user, self.user)
