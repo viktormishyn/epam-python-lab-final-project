@@ -695,6 +695,14 @@
 },
 {
     "model": "sessions.session",
+    "pk": "0vgo9urvg31cgu1gf595pgk82kbwyu0s",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAUBe_C2pDS8gN16d4zkA88pGogKe2q8e62SRe6fTPzNuF4XbJbG2Y3RXEVSlx-N8_hhXKA-OTyqDLUssyTl4ciT9rkvUa8b6f7d5C55b1OMGSTMUSAVT2TwTAO2qS-s9FSHAMjENSu6aBU6hJBI2HQPioEFp8v6So4qw:1lmvwp:7PBOQ4YfAOMIflxhgiO0j0HaTl2lda89zYEm0R_EQsU",
+        "expire_date": "2021-06-12T10:12:03.141Z"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "2iec8lb6dohx42cwyzu2ksvsdjluf9w4",
     "fields": {
         "session_data": ".eJxVjEEOwiAUBe_C2pDS8gN16d4zkA88pGogKe2q8e62SRe6fTPzNuF4XbJbG2Y3RXEVSlx-N8_hhXKA-OTyqDLUssyTl4ciT9rkvUa8b6f7d5C55b1OMGSTMUSAVT2TwTAO2qS-s9FSHAMjENSu6aBU6hJBI2HQPioEFp8v6So4qw:1llsQ7:lxEKj-2RKvnlyDlfI8rv6Fxi6-jID4oK8TfGhNO5r84",
@@ -869,7 +877,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$260000$YJzRai7d7HlgiJfF4ZQPR4$Jmak2MhPnWmk4BCjzOHciI/RSy19jcH79q7tKIXR/iM=",
-        "last_login": "2021-05-26T15:10:10.512Z",
+        "last_login": "2021-05-29T10:12:03.135Z",
         "email": "admin@gmail.com",
         "username": "admin",
         "start_date": "2021-05-26T12:13:23.654Z",
@@ -897,13 +905,55 @@
     }
 },
 {
+    "model": "orders.order",
+    "pk": 1,
+    "fields": {
+        "ref_code": "82443c95-13de-4eec-b3db-6ef120ea5216",
+        "user": 1,
+        "created_at": "2021-05-29T18:58:59.491Z",
+        "ordered_at": null,
+        "ordered": false
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 1,
+    "fields": {
+        "order": 1,
+        "game": 15,
+        "qty": 3,
+        "ordered": false
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 2,
+    "fields": {
+        "order": 1,
+        "game": 16,
+        "qty": 1,
+        "ordered": false
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 3,
+    "fields": {
+        "order": 1,
+        "game": 17,
+        "qty": 2,
+        "ordered": false
+    }
+},
+{
     "model": "posts.post",
     "pk": 2,
     "fields": {
         "game": 15,
         "author": 2,
         "created_at": "2021-05-26T15:23:19.392Z",
-        "content": "One of the best games of all times!!"
+        "content": "One of the best games of all times!!",
+        "edited": false
     }
 },
 {
@@ -913,7 +963,8 @@
         "post": 2,
         "author": 1,
         "created_at": "2021-05-26T15:24:04.743Z",
-        "content": "Totally agreed with u!"
+        "content": "Totally agreed with u!",
+        "edited": false
     }
 }
 ]
