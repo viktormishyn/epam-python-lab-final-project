@@ -4,6 +4,8 @@ from django.test import TestCase
 from store.models import Game, Genre
 from posts.models import Post, PostReply
 
+from django.db.utils import IntegrityError
+
 User = get_user_model()
 
 
@@ -40,6 +42,17 @@ class Test_Create_Game(TestCase):
         self.assertEqual(genre, 'Genre')
 
         self.assertEqual(str(game), 'Game1')
+
+    def test_game_should_not_cost_less_than_zero(self):
+        with self.assertRaises(IntegrityError):
+            Game.objects.create(name='Game_negative_price',
+                                description='description', price='-1', genre=self.genre)
+
+    def test_game_can_cost_zero(self):
+        game_zero = Game.objects.create(name='Game_negative_price',
+                                        description='description', price='0', genre=self.genre)
+        price = f'{game_zero.price}'
+        self.assertEqual(game_zero.price, '0')
 
     def test_game_posts_and_replies(self):
         self.assertEqual(len(self.game1.get_posts()), 1)

@@ -6,6 +6,9 @@ from django.core.files import File
 from django.db import models
 from PIL import Image
 
+from django.core.validators import MinValueValidator
+from decimal import Decimal
+
 from django.apps import apps
 
 User = get_user_model()
@@ -41,6 +44,9 @@ class Game(models.Model):
     class Meta:
         verbose_name_plural = 'games'
         ordering = ('added',)
+        constraints = [
+            models.CheckConstraint(check=models.Q(price__gte=Decimal('0')), name='price_gte_0'),
+        ]
 
     def get_image(self):
         if self.image:
