@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { gameAPI } from "../../api/api";
 import s from "./Game.module.css";
+import Post from "./Post";
 
 function Game() {
   let { id } = useParams();
@@ -46,8 +47,22 @@ function Game() {
 
       {/* description */}
       <p>{game.description}</p>
+      <hr />
+      <br />
 
       {/* comments */}
+      <div>
+        <h3>COMMENTS ({game.get_posts ? game.get_posts.length : 0})</h3>
+      </div>
+      <div>
+        {game.get_posts
+          ? game.get_posts.map((post) => (
+              <div key={post.id}>
+                <Post post={post} />
+              </div>
+            ))
+          : null}
+      </div>
     </div>
   );
 }

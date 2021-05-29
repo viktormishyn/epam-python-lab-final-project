@@ -41,3 +41,16 @@
   padding: 0.2em 0.5em;
   margin: auto 0.2em auto 0.2em;
 }
+
+.post {
+  border: 1px grey solid;
+}
+
+.post__header {
+  text-align: right;
+}
+
+.post__header__time {
+  margin-top: 0.1em;
+  font-size: x-small;
+}
