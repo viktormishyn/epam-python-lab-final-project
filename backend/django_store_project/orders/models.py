@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.models.enums import Choices
 from store.models import Game
 import uuid
+from phonenumber_field.modelfields import PhoneNumberField
+from model_utils import Choices
 
 User = get_user_model()
 
@@ -31,7 +34,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game,  on_delete=models.CASCADE)
     qty = models.PositiveIntegerField(default=1)
     ordered = models.BooleanField(default=False)
 
@@ -43,3 +46,14 @@ class OrderItem(models.Model):
 
     def get_total_item_price(self):
         return self.qty * self.game.price
+
+
+class OrderInfo(models.Model):
+    PAYMENT = Choices('Card', 'Privat24', 'GooglePay', 'ApplePay', 'PayPal')
+    order = models.OneToOneField(Order, related_name='order_info', on_delete=models.CASCADE, null=True)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone = PhoneNumberField()
+    payment_type = models.CharField(choices=PAYMENT, default=PAYMENT.Card, max_length=20)
+    comments = models.TextField(null=True, blank=True)
