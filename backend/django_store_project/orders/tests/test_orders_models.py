@@ -3,7 +3,7 @@ from django.test import TestCase
 
 from django.db.utils import IntegrityError
 
-from orders.models import OrderItem, Order
+from orders.models import OrderItem, Order, OrderInfo
 from store.models import Game, Genre
 
 User = get_user_model()
@@ -58,3 +58,15 @@ class Test_Create_Order(TestCase):
         self.assertEqual(len(str(self.order)), 36)  # valid uuid4 string contains 36 characters
         # test get_total method
         self.assertEqual(self.order.get_total(), 700)
+
+    def test_order_info(self):
+        checkout = OrderInfo.objects.create(
+            order=self.order, first_name='First', last_name='Last', email='email@gmail.com', phone='+380631111111')
+        self.assertEqual(checkout.order.user, self.user)
+        self.assertEqual(checkout.first_name, 'First')
+        self.assertEqual(checkout.phone, '+380631111111')
+        # default payment type is 'Card'
+        self.assertEqual(checkout.payment_type, 'Card')
+        checkout.payment_type = 'Privat24'
+        self.assertEqual(checkout.payment_type, 'Privat24')
+        self.assertEqual(self.order.order_info, checkout)
