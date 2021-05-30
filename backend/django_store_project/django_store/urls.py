@@ -53,6 +53,7 @@ urlpatterns = [
 
     # orders
     path('api/v1/orders/', orders.views.OrderView.as_view(), name='orders'),
+    path('api/v1/checkout/', orders.views.Checkout.as_view(), name='checkout'),
     # path('api/v1/orders/<int:pk>', orders.views.DetailOrder.as_view(), name='order'),
 
     # posts

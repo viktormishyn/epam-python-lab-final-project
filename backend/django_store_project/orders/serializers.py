@@ -1,7 +1,14 @@
 from rest_framework import serializers
 
-from .models import Order, OrderItem
+from .models import Order, OrderInfo, OrderItem
 from store.serializers import GameOrderSerializer
+
+
+class OrderInfoSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = OrderInfo
+        fields = ('order', 'first_name', 'last_name', 'email', 'phone', 'payment_type', 'comments')
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -16,6 +23,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
 
     get_items = OrderItemSerializer(many=True)
+    order_info = OrderInfoSerializer(many=False)
 
     class Meta:
         model = Order

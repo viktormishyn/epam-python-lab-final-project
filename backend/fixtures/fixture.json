@@ -1,83 +1,5 @@
 [
 {
-    "model": "admin.logentry",
-    "pk": 1,
-    "fields": {
-        "action_time": "2021-05-26T13:01:07.489Z",
-        "user": 1,
-        "content_type": 13,
-        "object_id": "1",
-        "object_repr": "Post 1",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 2,
-    "fields": {
-        "action_time": "2021-05-26T13:01:52.244Z",
-        "user": 1,
-        "content_type": 14,
-        "object_id": "1",
-        "object_repr": "PostReply 1",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 3,
-    "fields": {
-        "action_time": "2021-05-26T15:10:20.224Z",
-        "user": 1,
-        "content_type": 8,
-        "object_id": "2",
-        "object_repr": "user",
-        "action_flag": 2,
-        "change_message": "[{\"changed\": {\"fields\": [\"Is staff\"]}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 4,
-    "fields": {
-        "action_time": "2021-05-26T15:23:19.393Z",
-        "user": 1,
-        "content_type": 13,
-        "object_id": "2",
-        "object_repr": "Post 2",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 5,
-    "fields": {
-        "action_time": "2021-05-26T15:24:04.743Z",
-        "user": 1,
-        "content_type": 14,
-        "object_id": "2",
-        "object_repr": "PostReply 2",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 6,
-    "fields": {
-        "action_time": "2021-05-26T15:25:12.165Z",
-        "user": 1,
-        "content_type": 8,
-        "object_id": "2",
-        "object_repr": "user",
-        "action_flag": 2,
-        "change_message": "[{\"changed\": {\"fields\": [\"Is staff\"]}}]"
-    }
-},
-{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -513,71 +435,107 @@
     "model": "auth.permission",
     "pk": 49,
     "fields": {
-        "name": "Can add post",
+        "name": "Can add order info",
         "content_type": 13,
-        "codename": "add_post"
+        "codename": "add_orderinfo"
     }
 },
 {
     "model": "auth.permission",
     "pk": 50,
     "fields": {
-        "name": "Can change post",
+        "name": "Can change order info",
         "content_type": 13,
-        "codename": "change_post"
+        "codename": "change_orderinfo"
     }
 },
 {
     "model": "auth.permission",
     "pk": 51,
     "fields": {
-        "name": "Can delete post",
+        "name": "Can delete order info",
         "content_type": 13,
-        "codename": "delete_post"
+        "codename": "delete_orderinfo"
     }
 },
 {
     "model": "auth.permission",
     "pk": 52,
     "fields": {
-        "name": "Can view post",
+        "name": "Can view order info",
         "content_type": 13,
-        "codename": "view_post"
+        "codename": "view_orderinfo"
     }
 },
 {
     "model": "auth.permission",
     "pk": 53,
     "fields": {
-        "name": "Can add post reply",
+        "name": "Can add post",
         "content_type": 14,
-        "codename": "add_postreply"
+        "codename": "add_post"
     }
 },
 {
     "model": "auth.permission",
     "pk": 54,
     "fields": {
-        "name": "Can change post reply",
+        "name": "Can change post",
         "content_type": 14,
-        "codename": "change_postreply"
+        "codename": "change_post"
     }
 },
 {
     "model": "auth.permission",
     "pk": 55,
     "fields": {
-        "name": "Can delete post reply",
+        "name": "Can delete post",
         "content_type": 14,
-        "codename": "delete_postreply"
+        "codename": "delete_post"
     }
 },
 {
     "model": "auth.permission",
     "pk": 56,
     "fields": {
-        "name": "Can view post reply",
+        "name": "Can view post",
         "content_type": 14,
+        "codename": "view_post"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add post reply",
+        "content_type": 15,
+        "codename": "add_postreply"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change post reply",
+        "content_type": 15,
+        "codename": "change_postreply"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete post reply",
+        "content_type": 15,
+        "codename": "delete_postreply"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view post reply",
+        "content_type": 15,
         "codename": "view_postreply"
     }
 },
@@ -681,8 +639,8 @@
     "model": "contenttypes.contenttype",
     "pk": 13,
     "fields": {
-        "app_label": "posts",
-        "model": "post"
+        "app_label": "orders",
+        "model": "orderinfo"
     }
 },
 {
@@ -690,39 +648,23 @@
     "pk": 14,
     "fields": {
         "app_label": "posts",
+        "model": "post"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "posts",
         "model": "postreply"
     }
 },
 {
     "model": "sessions.session",
-    "pk": "0vgo9urvg31cgu1gf595pgk82kbwyu0s",
+    "pk": "bw3wr0b9stk21sbcfo5gxlx39lw6ylok",
     "fields": {
-        "session_data": ".eJxVjEEOwiAUBe_C2pDS8gN16d4zkA88pGogKe2q8e62SRe6fTPzNuF4XbJbG2Y3RXEVSlx-N8_hhXKA-OTyqDLUssyTl4ciT9rkvUa8b6f7d5C55b1OMGSTMUSAVT2TwTAO2qS-s9FSHAMjENSu6aBU6hJBI2HQPioEFp8v6So4qw:1lmvwp:7PBOQ4YfAOMIflxhgiO0j0HaTl2lda89zYEm0R_EQsU",
-        "expire_date": "2021-06-12T10:12:03.141Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "2iec8lb6dohx42cwyzu2ksvsdjluf9w4",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAUBe_C2pDS8gN16d4zkA88pGogKe2q8e62SRe6fTPzNuF4XbJbG2Y3RXEVSlx-N8_hhXKA-OTyqDLUssyTl4ciT9rkvUa8b6f7d5C55b1OMGSTMUSAVT2TwTAO2qS-s9FSHAMjENSu6aBU6hJBI2HQPioEFp8v6So4qw:1llsQ7:lxEKj-2RKvnlyDlfI8rv6Fxi6-jID4oK8TfGhNO5r84",
-        "expire_date": "2021-06-09T12:13:55.668Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "kh4lvtcjgwjo7n5plqd1r3hk29sqdvyq",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAUBe_C2pDS8gN16d4zkA88pGogKe2q8e62SRe6fTPzNuF4XbJbG2Y3RXEVSlx-N8_hhXKA-OTyqDLUssyTl4ciT9rkvUa8b6f7d5C55b1OMGSTMUSAVT2TwTAO2qS-s9FSHAMjENSu6aBU6hJBI2HQPioEFp8v6So4qw:1llvAg:N-y6ey0gxGHEaCsYzR_11VXUrreyEMvdUhJsdAoJYSw",
-        "expire_date": "2021-06-09T15:10:10.521Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "w2mef4djbs2ysav97yutnam0iu2y11v5",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAUBe_C2pDS8gN16d4zkA88pGogKe2q8e62SRe6fTPzNuF4XbJbG2Y3RXEVSlx-N8_hhXKA-OTyqDLUssyTl4ciT9rkvUa8b6f7d5C55b1OMGSTMUSAVT2TwTAO2qS-s9FSHAMjENSu6aBU6hJBI2HQPioEFp8v6So4qw:1llsPs:nMqcgsRqoW0myB_x2SSgUwicIiaIkAxKL577I76uaI8",
-        "expire_date": "2021-06-09T12:13:40.308Z"
+        "session_data": ".eJxVjEEOwiAUBe_C2pDS8gN16d4zkA88pGogKe2q8e62SRe6fTPzNuF4XbJbG2Y3RXEVSlx-N8_hhXKA-OTyqDLUssyTl4ciT9rkvUa8b6f7d5C55b1OMGSTMUSAVT2TwTAO2qS-s9FSHAMjENSu6aBU6hJBI2HQPioEFp8v6So4qw:1lnOTP:msfRf43Ka_eE_uLGdeJqA_1L1QWG0Pj9lHRvNOMKyHw",
+        "expire_date": "2021-06-13T16:39:35.190Z"
     }
 },
 {
@@ -877,7 +819,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$260000$YJzRai7d7HlgiJfF4ZQPR4$Jmak2MhPnWmk4BCjzOHciI/RSy19jcH79q7tKIXR/iM=",
-        "last_login": "2021-05-29T10:12:03.135Z",
+        "last_login": "2021-05-30T16:39:35.185Z",
         "email": "admin@gmail.com",
         "username": "admin",
         "start_date": "2021-05-26T12:13:23.654Z",
