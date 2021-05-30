@@ -10,6 +10,8 @@ Django==3.2
 django-autoslug==1.9.8
 django-cors-headers==3.7.0
 django-filter==2.4.0
+django-model-utils==4.1.1
+django-phonenumber-field==5.1.0
 django-seed==0.2.2
 djangorestframework==3.12.4
 djangorestframework-simplejwt==4.6.0
@@ -25,6 +27,7 @@ MarkupSafe==2.0.0
 mccabe==0.6.1
 mixer==7.1.2
 packaging==20.9
+phonenumbers==8.12.24
 Pillow==8.2.0
 pluggy==0.13.1
 py==1.10.0
