@@ -1,16 +1,16 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework import viewsets
 
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework import generics, status
 
 
 from store.models import Game
 from .models import Post, PostReply
 from .serializers import PostSerializer, PostReplySerializer
-from .permissions import PostUserWritePermission
-
+from .permissions import PutDeleteCommentsPermission
 from rest_framework.response import Response
 
 
@@ -31,12 +31,48 @@ from rest_framework.response import Response
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    permissions = [PostUserWritePermission]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
 
     def get_object(self, queryset=None, **kwargs):
         return generics.get_object_or_404(Post, id=self.kwargs.get('pk'))
+
+    def get_permissions(self):
+        if self.action in ('list', 'retrieve'):
+            permission_classes = (AllowAny, )
+        elif self.action == 'create':
+            permission_classes = (IsAuthenticated, )
+        elif self.action in ('update', 'destroy'):
+            permission_classes = (PutDeleteCommentsPermission, )
+        else:
+            permission_classes = (IsAdminUser, )
+        return [permission() for permission in permission_classes]
+
+    def create(self, request):
+        data = request.data
+        author = request.user
+        game = Game.objects.get(id=data.get('game_id'))
+        content = data.get('content')
+        post = Post(author=author, game=game, content=content)
+        post.save()
+        return Response({'success': 'Post is published'}, status=status.HTTP_200_OK)
+
+    def update(self, request, pk=None):
+        queryset = Post.objects.all()
+        post = get_object_or_404(queryset, pk=pk)
+        self.check_object_permissions(self.request, post)  # PutDeleteCommentsPermission
+        content = request.data.get('content')
+        post.content = content
+        post.edited = True
+        post.save()
+        return Response({'success': 'Post is updated'}, status=status.HTTP_200_OK)
+
+    def destroy(self, request, pk=None):
+        queryset = Post.objects.all()
+        post = get_object_or_404(queryset, pk=pk)
+        self.check_object_permissions(self.request, post)  # PutDeleteCommentsPermission
+        post.delete()
+        return Response({'status': 'Post is deleted'}, status=status.HTTP_204_NO_CONTENT)
 
 
 # class PostView(APIView):

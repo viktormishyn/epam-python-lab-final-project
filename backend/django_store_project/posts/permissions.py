@@ -1,12 +1,10 @@
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import BasePermission
 
 
-class PostUserWritePermission(BasePermission):
-    # only author of the post can edit it
-    message = 'Editing posts is restricted to the author only.'
+class PutDeleteCommentsPermission(BasePermission):
+    message = 'Editing or deleting posts is restricted to the author, manager or admin'
 
     def has_object_permission(self, request, view, obj):
-        if request.method in SAFE_METHODS:
-            # SAFE_METHODS - GET, OPTIONS, HEAD
+        if request.user.is_staff:
             return True
         return obj.author == request.user

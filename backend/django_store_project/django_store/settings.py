@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'orders',
     'posts',
     'phonenumber_field',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

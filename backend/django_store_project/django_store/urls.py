@@ -32,7 +32,7 @@ import orders.views
 import posts.views
 
 router = DefaultRouter()
-router.register(r'posts', posts.views.PostViewSet)
+router.register(r'posts', posts.views.PostViewSet, basename='posts')
 
 urlpatterns = [
     # authorization, authentication

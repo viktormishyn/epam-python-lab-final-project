@@ -19,3 +19,8 @@ python3 manage.py loaddata store/fixtures/store.json
 
 python3 manage.py dumpdata --format json --indent 4 > ../fixtures/fixture.json
 python3 manage.py loaddata ../fixtures/fixture.json
+
+----------------------------------------------------------
+
+# django-extensions
+python3 manage.py show_urls
