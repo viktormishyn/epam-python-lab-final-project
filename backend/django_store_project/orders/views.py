@@ -1,37 +1,16 @@
-from rest_framework import generics, permissions, status
+from rest_framework import status
 from rest_framework.views import APIView
-from django.db.models.signals import pre_save, post_save
+# from django.db.models.signals import pre_save, post_save
 
 from .models import Order, OrderItem, OrderInfo
 from store.models import Game
-from .permissions import isAdminOrReadOnly  # TODO
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from .serializers import OrderItemSerializer, OrderSerializer, OrderInfoSerializer
-from rest_framework import generics, status
 from django.utils import timezone
 
 
 from rest_framework.response import Response
 
-
-# class ListOrder(generics.ListCreateAPIView):
-#     permission_classes = (IsAdminUser,)
-#     queryset = Order.objects.all()
-#     serializer_class = OrderSerializer
-
-
-# class DetailOrder(generics.RetrieveUpdateDestroyAPIView):
-#     permission_classes = (IsAdminUser,)
-#     queryset = Order.objects.all()
-#     serializer_class = OrderSerializer
-
-
-# def add_to_cart(request, id):
-#     game = get_object_or_404(Game, id=id)
-#     order = Order.objects.filter(user=request.user, is_ordered=False)
-#     if order.exists():
-#         # check if the order item is in the order
-#         if order.items.filter()
 
 class OrderView(APIView):
     permission_classes = [IsAuthenticated]
@@ -75,6 +54,7 @@ class OrderView(APIView):
 
 
 class Checkout(APIView):
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         order = Order.objects.filter(user=request.user, ordered=False).first()
@@ -93,6 +73,6 @@ class Checkout(APIView):
         order.save()
         return Response({'success': 'The order is ordered'}, status=status.HTTP_200_OK)
 
-    # @receiver(pre_save, sender=OrderItem)
-    # def correct_price(sender, **kwargs):
-    #     print('I got called')
+# @receiver(pre_save, sender=OrderItem)
+# def correct_price(sender, **kwargs):
+#     print('I got called')

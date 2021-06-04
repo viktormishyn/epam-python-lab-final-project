@@ -7,7 +7,7 @@ python3 manage.py makemigrations --dry-run --verbosity 3
 python3 createsuperuser
 
 coverage run --omit='*/env/*' manage.py test
-coverage html
+coverage html --include=./*py
 coverage report
 
 python3 manage.py dumpdata --format json --indent 4

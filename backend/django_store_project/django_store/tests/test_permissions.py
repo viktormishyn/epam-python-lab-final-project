@@ -29,7 +29,7 @@ class TestPermissions(APITestCase):
         self.admin.save()
         # create genre, game models
         self.test_genre = Genre.objects.create(name='TestGenre')
-        self.test_game = Game.objects.create(name='TestGame')  # id=1
+        self.test_game = Game.objects.create(name='TestGame', price=100)  # id=1
 
     def tearDown(self):
         self.client.logout()
@@ -37,6 +37,8 @@ class TestPermissions(APITestCase):
         self.user2.delete()
         self.manager.delete()
         self.admin.delete()
+        self.test_game.delete()
+        self.test_genre.delete()
 
     def test_crud_genres_permissions(self):
         # anybody can see genres
@@ -193,3 +195,48 @@ class TestPermissions(APITestCase):
             reverse('posts-detail', kwargs={'pk': '1'}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.client.logout()
+
+    def test_orders_permissions(self):
+        # TODO guests should be able to make orders!!
+        # for now - temporary permission class IsAuthenticated
+
+        url = reverse('orders')
+
+        # guest
+        response = self.client.get(reverse('orders'), format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        # user
+        self.client.login(email='user@user.com', password='password')
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data['get_items']), 0)
+
+        response = self.client.post(url, data={'id': 1, 'qty': 5})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        response = self.client.get(url)
+        self.assertEqual(len(response.data['get_items']), 1)
+
+        self.assertEqual(response.data['user'], 1)
+        self.assertEqual(response.data['ordered'], False)
+        self.assertEqual(response.data['get_items'][0]['game']['name'], 'TestGame')
+        self.assertEqual(response.data['get_items'][0]['qty'], 5)
+        self.assertEqual(response.data['get_total'], 500)
+
+        response = self.client.put(url, data={'id': 1, 'qty': 4})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = self.client.get(url)
+        self.assertEqual(response.data['user'], 1)
+        self.assertEqual(response.data['ordered'], False)
+        self.assertEqual(response.data['get_items'][0]['game']['name'], 'TestGame')
+        self.assertEqual(response.data['get_items'][0]['qty'], 4)
+        self.assertEqual(response.data['get_total'], 400)
+
+        response = self.client.post(reverse('checkout'), data={
+                                    'first_name': 'John', 'last_name': 'Smith', 'email': 'john_smith@gmail.com',
+                                    'phone': '+380631111111', 'payment_type': 'Privat24', 'comments': 'comments'})
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = self.client.get(url)
+        self.assertEqual(len(response.data['get_items']), 0)
