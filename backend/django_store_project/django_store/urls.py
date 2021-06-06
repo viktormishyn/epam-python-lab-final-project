@@ -18,8 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-from rest_framework.documentation import include_docs_urls
-from rest_framework.schemas import get_schema_view
+
 # jwt
 from rest_framework_simplejwt.views import (TokenObtainPairView,
                                             TokenRefreshView)
@@ -60,12 +59,6 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
 
     # documentation
-    path('docs/', include_docs_urls(title='GameStore')),\
-    path('schema/', get_schema_view(
-        title="GameStore",
-        description="API for the GameStore",
-        version="1.0.0"
-    ), name='openapi-schema'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
