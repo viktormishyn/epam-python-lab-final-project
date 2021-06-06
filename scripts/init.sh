@@ -12,16 +12,18 @@ if [ ! -f "requirements.txt" ]; then
   pip install wheel
   pip install django
   pip install djangorestframework
-  pip install pytest pytest-django pytest-cov mixer
+  # pip install pytest pytest-django pytest-cov mixer
   pip install autopep8
   pip freeze >requirements.txt
 else
   echo "Found requirements.txt. Installing requirements..."
+  pip install wheel
   pip install -r requirements.txt
 fi
 
 cd django_store_project
 python3 manage.py migrate
+python3 manage.py loaddata ../fixtures/fixture.json
 cd ../..
 
 # init frontend server
